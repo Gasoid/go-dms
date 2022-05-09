@@ -15,14 +15,14 @@ func (e *LatLonError) Error() string {
 
 // DMS coordinates
 type DMS struct {
-	degrees   uint8
-	minutes   uint8
-	seconds   float64
-	direction string
+	Degrees   uint8
+	Minutes   uint8
+	Seconds   float64
+	Direction string
 }
 
 func (d *DMS) String() string {
-	return fmt.Sprintf(`%d°%d'%f" %s`, d.degrees, d.minutes, d.seconds, d.direction)
+	return fmt.Sprintf(`%d°%d'%f" %s`, d.Degrees, d.Minutes, d.Seconds, d.Direction)
 }
 
 // NewDMS converts Decimal Degreees to Degree, Minute, Seconds coordinates
@@ -56,7 +56,7 @@ func NewDMS(lat, lon float64) (*DMS, *DMS, error) {
 	longitudeMinutes := uint8((lon - float64(longitude)) * 60)
 	longitudeSeconds := (lon - float64(longitude) - float64(longitudeMinutes)/60) * 3600
 
-	return &DMS{degrees: latitude, minutes: latitudeMinutes, seconds: latitudeSeconds, direction: latDirection},
-		&DMS{degrees: longitude, minutes: longitudeMinutes, seconds: longitudeSeconds, direction: lonDirection},
+	return &DMS{Degrees: latitude, Minutes: latitudeMinutes, Seconds: latitudeSeconds, Direction: latDirection},
+		&DMS{Degrees: longitude, Minutes: longitudeMinutes, Seconds: longitudeSeconds, Direction: lonDirection},
 		nil
 }
