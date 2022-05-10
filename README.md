@@ -12,21 +12,18 @@ Efficiently converting coordinates between DD and DMS
 package main
 
 import (
-    "github.com/KingAkeem/go-dms/dms"
+    "github.com/Gasoid/go-dms/dms"
     "fmt"
     "time"
     "log"
 )
 
 func main() {
-    start := time.Now()
     lat, lon, err := dms.NewDMS(2.21893, 1.213905)
     if err != nil {
         log.Fatal(err)
     }
-    fmt.Printf("DMS coordinates:\n%+v, %+v\n", lat.String(), lon.String()) 
-    end := time.Now()
-    fmt.Printf("Function took %f seconds.\n", end.Sub(start).Seconds())
+    fmt.Printf("DMS coordinates:\n%+v, %+v\n", lat.String(), lon.String())
 }
 ```
 **>> go run test.go**
@@ -35,7 +32,6 @@ func main() {
 ```
     DMS coordinates:
     2°13'8.148000" N, 1°12'50.058000" E
-    Function took 0.000049 seconds.
 ```
 
 **>> GOOS=js GOARCH=wasm go run -exec="$(go env GOROOT)/misc/wasm/go_js_wasm_exec" .** (Compiling as WebAssembly module for Node, run command in the same directory as `test.go`)
